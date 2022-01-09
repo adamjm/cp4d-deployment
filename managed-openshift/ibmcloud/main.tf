@@ -1,5 +1,5 @@
 terraform {
-  required_version = "v0.13.0"
+  required_version = "v0.13.7"
   required_providers {
     ibm = {
          source = "IBM-Cloud/ibm"
@@ -60,27 +60,10 @@ module "roks" {
   worker_nodes_per_zone           = var.worker_nodes_per_zone
 }
 
-module "portworx" {
-  source = "./portworx"
-  
-  cluster_id           = module.roks.cluster_id
-  create_external_etcd = var.create_external_etcd
-  ibmcloud_api_key     = var.ibmcloud_api_key
-  kube_config_path     = module.roks.kube_config_path
-  region               = var.region
-  resource_group_id    = data.ibm_resource_group.this.id
-  storage_capacity     = var.storage_capacity
-  storage_iops         = var.storage_iops
-  storage_profile      = var.storage_profile
-  unique_id            = var.unique_id
-  worker_nodes         = var.multizone ? var.no_of_zones*var.worker_nodes_per_zone : var.worker_nodes_per_zone
-}
-
 module "cpd_prereq" {
   source = "./prereq"
   
   accept_cpd_license    = var.accept_cpd_license
-  portworx_is_ready     = module.portworx.portworx_is_ready
   worker_node_flavor    = var.worker_node_flavor
   region                = var.region
   cpd_registry_password = var.cpd_registry_password

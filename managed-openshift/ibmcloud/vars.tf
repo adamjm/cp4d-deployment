@@ -65,7 +65,7 @@ variable "openshift_token" {
 }
 
 variable "cpd_storageclass" {
-  default = "portworx"
+  default = "ocs"
 }
 
 variable "cpd_platform" {

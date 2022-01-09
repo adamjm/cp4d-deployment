@@ -29,14 +29,14 @@ resource "ibm_resource_instance" "cos_instance" {
 #   storage_class        = "standard"
 # }
 
-data "ibm_is_subnet" "this" {
-  count = length(var.vpc_subnets)
-  identifier = var.vpc_subnets[count.index]
-}
+#data "ibm_is_subnet" "this" {
+#  count = length(var.vpc_subnets)
+#  identifier = var.vpc_subnets[count.index]
+#}
 
-locals {
-  zone_subnet_map = zipmap(data.ibm_is_subnet.this.*.zone, var.vpc_subnets)
-}
+#locals {
+#  zone_subnet_map = zipmap(data.ibm_is_subnet.this.*.zone, var.vpc_subnets)
+#}
 
 #Create the ROKS cluster
 resource "ibm_container_vpc_cluster" "this" {
@@ -52,13 +52,13 @@ resource "ibm_container_vpc_cluster" "this" {
   vpc_id                          = var.vpc_id
   worker_count                    = var.worker_nodes_per_zone
   
-  dynamic "zones" {
-    for_each = local.zone_subnet_map
-    content {
-      name = zones.key
-      subnet_id = zones.value
-    }
-  }
+  #dynamic "zones" {
+  #  for_each = local.zone_subnet_map
+  #  content {
+  #    name = zones.key
+  #    subnet_id = zones.value
+  #  }
+  #}
 }
 
 data "ibm_container_vpc_cluster" "this" {

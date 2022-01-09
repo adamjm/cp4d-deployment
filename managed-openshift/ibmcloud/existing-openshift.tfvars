@@ -10,19 +10,19 @@ accept_cpd_license = "yes" # see vars.tf for a link to the license
 cpd_registry_password = "<xxx_cpd_entitlement_key_xxx>" # retrieve from https://myibm.ibm.com/products-services/containerlibrary
 operator_namespace = "ibm-common-services"
 
-multizone = true
+multizone = false
 
 kube_version = "4.8_openshift"
 
-worker_nodes_per_zone = "1"  #same as no. of workers per zone in the existing cluster 
+worker_nodes_per_zone = "5"  #same as no. of workers per zone in the existing cluster 
 
-no_of_zones = "3"
+no_of_zones = "1"
 
 existing_vpc_id = "<existing_vpc_id>"
 existing_vpc_subnets = ["<subnet_ID_1>", "<subnet_ID_2>", "<subnet_ID_3>"] 
 existing_roks_cluster = <existing_cluster_name>
 
-create_external_etcd = true
+create_external_etcd = false
 
 data_virtualization             = {"enable":"yes", "version":"1.7.2", "channel":"v1.7"}
 
@@ -31,3 +31,5 @@ watson_studio     = {"enable":"no", "version":"4.0.2", "channel":"v2.0"}
 cpd_platform             = {"enable":"yes", "version":"4.0.2", "channel":"v2.0"}
 
 cognos_dashboard_embedded     = {"enable":"no", "version":"4.0.2", "channel":"v1.0"}
+
+
