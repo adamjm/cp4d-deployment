@@ -28,6 +28,10 @@ variable "vpc_subnets" {
   type = list
 }
 
+variable "vpc_zones" {
+  type = list
+}
+
 variable "worker_node_flavor" {}
 
 variable "worker_nodes_per_zone" {}

@@ -30,6 +30,7 @@ module "vpc" {
   # when this is not null, the module doesn't create any resources
   existing_vpc_id           = var.existing_vpc_id
   existing_vpc_subnets      = var.existing_vpc_subnets
+  existing_vpc_zones        = var.existing_vpc_zones
   
   acl_rules                 = var.acl_rules
   enable_public_gateway     = var.enable_public_gateway
@@ -56,6 +57,7 @@ module "roks" {
   unique_id                       = var.unique_id
   vpc_id                          = module.vpc.vpc_id
   vpc_subnets                     = module.vpc.vpc_subnets
+  vpc_zones                       = module.vpc.vpc_zones
   worker_node_flavor              = var.worker_node_flavor
   worker_nodes_per_zone           = var.worker_nodes_per_zone
 }

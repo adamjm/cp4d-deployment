@@ -5,8 +5,8 @@
 #}
 
 locals {
-  zones = "${var.zones}"
-  subnet_ids = "${var.}
+  zones = "${var.vpc_zones}"
+  subnet_ids = "${var.vpc_subnets}"
 }
 
 terraform {
@@ -35,14 +35,14 @@ resource "ibm_resource_instance" "cos_instance" {
 #   storage_class        = "standard"
 # }
 
-data "ibm_is_subnet" "this" {
-  count = length(var.vpc_subnets)
-  identifier = var.vpc_subnets[count.index]
-}
+#data "ibm_is_subnet" "this" {
+#  count = length(var.vpc_subnets)
+#  identifier = var.vpc_subnets[count.index]
+#}
 
 locals {
   #zone_subnet_map = zipmap(data.ibm_is_subnet.this.*.zone, var.vpc_subnets)
-  zone_subnet_map = zipmap(var.ibm_is_subnet.this.*.zone, var.vpc_subnets)
+  zone_subnet_map = zipmap(var.vpc_zones, var.vpc_subnets)
 }
 
 #Create the ROKS cluster

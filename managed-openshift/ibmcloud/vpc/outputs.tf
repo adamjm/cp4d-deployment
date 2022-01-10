@@ -12,3 +12,8 @@ output "vpc_subnets" {
   description = "List of IDs of the subnets"
   value = local.create_resources ? ibm_is_subnet.this.*.id : var.existing_vpc_subnets
 }
+
+output "vpc_zones" {
+  description = "List of Zones"
+  value = local.create_resources ? ibm_is_subnet.this.*.zone : var.existing_vpc_zones
+}
