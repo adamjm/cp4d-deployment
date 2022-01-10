@@ -20,6 +20,7 @@ no_of_zones = "3"
 
 existing_vpc_id = "<existing_vpc_id>"
 existing_vpc_subnets = ["<subnet_ID_1>", "<subnet_ID_2>", "<subnet_ID_3>"] 
+existing_vpc_zones = ["<zone_ID_1>", "<zone_ID_2>", "<zone_ID_3>"] 
 existing_roks_cluster = <existing_cluster_name>
 
 create_external_etcd = true

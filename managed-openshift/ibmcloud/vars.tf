@@ -234,6 +234,12 @@ variable "existing_vpc_subnets" {
   default = null
 }
 
+variable "existing_vpc_zones" {
+  description = "List of zones in an existing VPC in which the cluster will be installed. Required when `existing_vpc_id` has been provided."
+  default = null
+}
+
+
 variable "enable_public_gateway" {
   type = bool
   description = "Attach a public gateway to the worker node subnets? [true/false] Currently unsupported."

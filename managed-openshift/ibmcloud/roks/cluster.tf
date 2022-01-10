@@ -1,6 +1,12 @@
+#locals {
+#   #zone_count = var.multizone ? 3 : 1
+#   zones = ["${var.region}-1", "${var.region}-2", "${var.region}-3"]
+#   subnet_id = []
+#}
+
 locals {
-  # zone_count = var.multizone ? 3 : 1
-  # zones = ["${var.region}-1", "${var.region}-2", "${var.region}-3"]
+  zones = "${var.zones}"
+  subnet_ids = "${var.}
 }
 
 terraform {
@@ -35,7 +41,8 @@ data "ibm_is_subnet" "this" {
 }
 
 locals {
-  zone_subnet_map = zipmap(data.ibm_is_subnet.this.*.zone, var.vpc_subnets)
+  #zone_subnet_map = zipmap(data.ibm_is_subnet.this.*.zone, var.vpc_subnets)
+  zone_subnet_map = zipmap(var.ibm_is_subnet.this.*.zone, var.vpc_subnets)
 }
 
 #Create the ROKS cluster
