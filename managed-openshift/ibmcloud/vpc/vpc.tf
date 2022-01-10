@@ -1,7 +1,7 @@
-#locals {
-#  create_resources = var.existing_vpc_id == null
-#  zones = var.multizone ? ["${var.region}-1", "${var.region}-2", "${var.region}-3"] : #["${var.region}-1"]
-#}
+locals {
+  create_resources = var.existing_vpc_id == null
+  zones = var.multizone ? ["${var.region}-1", "${var.region}-2", "${var.region}-3"] : ["${var.region}-1"]
+}
 
 terraform {
   required_providers {
