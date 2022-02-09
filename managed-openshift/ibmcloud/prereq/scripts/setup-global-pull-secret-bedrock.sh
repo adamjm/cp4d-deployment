@@ -3,8 +3,13 @@
 ENTITLEMENT_USER=$1
 ENTITLEMENT_KEY=$2
 
-pull_secret=$(echo -n "$ENTITLEMENT_USER:$ENTITLEMENT_KEY" | base64 -w0)
-
+ENV=`uname`
+if [ "$ENV" == "Darwin" ]
+then
+    pull_secret=$(echo -n "$ENTITLEMENT_USER:$ENTITLEMENT_KEY" | base64)
+else
+    pull_secret=$(echo -n "$ENTITLEMENT_USER:$ENTITLEMENT_KEY" | base64 -w0)
+fi
 # Retrieve the current global pull secret
 oc get secret/pull-secret -n openshift-config -o jsonpath='{.data.\.dockerconfigjson}' | base64 -d > /tmp/dockerconfig.json
 
@@ -16,7 +21,7 @@ oc set data secret/pull-secret -n openshift-config --from-file=.dockerconfigjson
 # copy to current directory
 cp /tmp/dockerconfig.json config.json
 
-# take a backup of dockerconfig.json after bedrock secret added. 
+# take a backup of dockerconfig.json after bedrock secret added.
 cp /tmp/dockerconfig.json /tmp/dockerconfig.json_bedrock_backup
 
 
